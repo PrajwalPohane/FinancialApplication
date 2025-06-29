@@ -35,7 +35,7 @@ const LoginPage: React.FC = () => {
       if (success) {
         toast.success('Welcome back!');
       } else {
-        toast.error('Invalid credentials. Try admin@example.com / password123');
+        toast.error('Invalid credentials. Try user1@example.com / password1');
       }
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
@@ -59,8 +59,8 @@ const LoginPage: React.FC = () => {
         {/* Demo Credentials */}
         <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
           <p className="text-sm text-gray-400 mb-2">Demo Credentials:</p>
-          <p className="text-sm text-emerald-400">Email: admin@example.com</p>
-          <p className="text-sm text-emerald-400">Password: password123</p>
+          <p className="text-sm text-emerald-400">Email: user1@example.com</p>
+          <p className="text-sm text-emerald-400">Password: password1</p>
         </div>
 
         {/* Form */}

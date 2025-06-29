@@ -41,3 +41,6 @@ yarn-error.log*
 
 # Ignore output from scripts
 backend/scripts/*.js 
+
+# Ignore pem keys
+backend/keys/*.pem

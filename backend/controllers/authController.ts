@@ -1,16 +1,14 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import { Request, Response } from 'express';
+import fs from 'fs';
+import path from 'path';
 
-const getJwtSecret = () => {
-  const secret = process.env.JWT_SECRET;
-  if (!secret) throw new Error('JWT_SECRET not set');
-  return secret;
-};
+const privateKey = fs.readFileSync(path.join(__dirname, '../keys/private_key.pem'), 'utf8');
 
 // Generate JWT Token
 const generateToken = (userId: string) => {
-  return jwt.sign({ userId }, getJwtSecret(), { expiresIn: '7d' });
+  return jwt.sign({ userId }, privateKey, { algorithm: 'RS256', expiresIn: '7d' });
 };
 
 // Register User

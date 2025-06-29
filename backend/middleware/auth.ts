@@ -1,5 +1,9 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
+import fs from 'fs';
+import path from 'path';
+
+const publicKey = fs.readFileSync(path.join(__dirname, '../keys/public_key.pem'), 'utf8');
 
 const auth = async (req, res, next) => {
   try {
@@ -12,9 +16,7 @@ const auth = async (req, res, next) => {
       });
     }
 
-    const secret = process.env.JWT_SECRET;
-    if (!secret) throw new Error('JWT_SECRET not set');
-    const decoded = jwt.verify(token, secret) as { userId: string };
+    const decoded = jwt.verify(token, publicKey, { algorithms: ['RS256'] }) as { userId: string };
     const user = await User.findById(decoded.userId);
 
     if (!user) {
