@@ -20,7 +20,7 @@ A full-stack financial dashboard application with a modern React frontend and a 
 ```
 fin/
   backend/           # Node.js/Express/MongoDB backend
-  frontend_bolt/     # React + TypeScript frontend
+  frontend/     # React + TypeScript frontend
   transactions.json  # Sample data
 ```
 
@@ -58,7 +58,7 @@ PORT=5000
 
 ### 3. Frontend Setup
 ```bash
-cd ../frontend_bolt
+cd ../frontend
 npm install
 npm run dev
 ```
