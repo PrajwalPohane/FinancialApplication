@@ -1,75 +1,106 @@
-# Financial Dashboard App
+# Financial Application
 
-[![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-18.x-blue)](https://reactjs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/PrajwalPohane/FinancialApplication)
 
-A full-stack financial dashboard application with a modern React frontend and a secure Node.js/Express backend using MongoDB Atlas. Features user authentication, transaction management, analytics, CSV export, and more.
+A full-stack financial dashboard application designed for tracking and analyzing personal or business finances. This application features a secure Node.js backend with Express and a modern, responsive React frontend built with Vite and TypeScript.
 
-## Features
-- User authentication (JWT)
-- Add, edit, delete, and view transactions
-- Dynamic analytics and charts
-- Export transactions and analytics as CSV
-- Accessibility and responsive design
-- Filter, sort, and search transactions
-- Wallet and quick actions
-- Category and status breakdowns
+## Key Features
 
-## Folder Structure
-```
-fin/
-  backend/           # Node.js/Express/MongoDB backend
-  frontend/     # React + TypeScript frontend
-  transactions.json  # Sample data
-```
+- **Secure Authentication**: User registration and login using JSON Web Tokens (JWT) with RS256 encryption.
+- **Transaction Management**: Perform full CRUD (Create, Read, Update, Delete) operations on your financial transactions.
+- **Interactive Dashboard**: Get an at-a-glance overview of your financial health with key metrics and an interactive chart.
+- **In-Depth Analytics**: Analyze your financial data with dynamic charts, category and status breakdowns, and flexible time-range filtering.
+- **Data Export**: Export your transaction history or analytics reports to CSV format for record-keeping or further analysis.
+- **Wallet Functionality**: A dedicated wallet page with quick actions like Send, Request, and Add Money.
+- **Modern Tech Stack**: Built with TypeScript across the stack, featuring a React/Vite frontend and a Node.js/Express backend connected to MongoDB.
+- **Modular UI**: Interactive modals for all major user actions, providing a smooth and intuitive user experience.
 
-## Setup Instructions
+## Architecture
+
+The repository is structured as a monorepo with two main packages:
+
+-   `frontend/`: A client-side application built with React, Vite, and TypeScript. It handles the user interface and interacts with the backend API.
+-   `backend/`: A server-side application built with Node.js, Express, and TypeScript. It provides a RESTful API for authentication, transaction management, and analytics, with data stored in MongoDB.
+
+## Getting Started
+
+Follow these instructions to get a local copy of the project up and running for development and testing purposes.
 
 ### Prerequisites
-- Node.js 18+
-- npm or yarn
-- MongoDB Atlas account (or local MongoDB)
 
-### 1. Clone the repository
-```bash
-git clone "https://github.com/PrajwalPohane/FinancialApplication.git"
-cd fin
-```
+-   [Node.js](https://nodejs.org/) (v16.20.1 or later)
+-   [npm](https://www.npmjs.com/) (v8 or later)
+-   A MongoDB connection string (from [MongoDB Atlas](https://www.mongodb.com/atlas) or a local instance)
 
-### 2. Backend Setup
-```bash
-cd backend
-npm install
-# Copy and edit environment variables
-cp config.env.example config.env
-# Set MONGODB_URI, JWT_SECRET, etc. in config.env
-npm run build
-npm start
-```
+### Installation & Setup
 
-#### Backend Environment Variables (`backend/config.env`)
-```
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-CORS_ORIGIN=http://localhost:5173
-PORT=5000
-```
+1.  **Clone the repository:**
+    ```sh
+    git clone https://github.com/prajwalpohane/financialapplication.git
+    cd financialapplication
+    ```
 
-### 3. Frontend Setup
-```bash
-cd ../frontend
-npm install
-npm run dev
-```
+2.  **Set up the Backend:**
 
-- The frontend will run on [http://localhost:5173](http://localhost:5173)
-- The backend will run on [http://localhost:5000](http://localhost:5000)
+    -   Navigate to the backend directory:
+        ```sh
+        cd backend
+        ```
+    -   Install dependencies:
+        ```sh
+        npm install
+        ```
+    -   Generate RSA keys for JWT authentication. These keys are used to sign and verify tokens securely.
+        ```sh
+        mkdir keys
+        openssl genpkey -algorithm RSA -out keys/private_key.pem -pkeyopt rsa_keygen_bits:2048
+        openssl rsa -pubout -in keys/private_key.pem -out keys/public_key.pem
+        ```
+    -   Create a `.env` file in the `backend` directory and add the following environment variables:
+        ```env
+        # Your MongoDB connection string
+        MONGODB_URI=your_mongodb_connection_string
 
-## Usage
-- Register or login with demo credentials
-- Add, edit, delete, and view transactions
-- Explore analytics and export reports
+        # Frontend URL for CORS
+        CORS_ORIGIN=http://localhost:5173
 
-## License
-MIT 
+        # Port for the backend server
+        PORT=5000
+        ```
+    -   Seed the database with initial user data (optional but recommended for demo):
+        ```sh
+        node createAdmin.js
+        ```
+    -   Build and run the server:
+        ```sh
+        npm run build
+        npm start
+        ```
+    -   The backend server should now be running on `http://localhost:5000`.
+
+3.  **Set up the Frontend:**
+
+    -   In a new terminal, navigate to the frontend directory:
+        ```sh
+        cd frontend
+        ```
+    -   Install dependencies:
+        ```sh
+        npm install
+        ```
+    -   Run the development server:
+        ```sh
+        npm run dev
+        ```
+    -   The frontend application should now be running on `http://localhost:5173`.
+
+### Usage
+
+Once both the backend and frontend are running, open your browser to `http://localhost:5173`. You can log in using the demo credentials created by the seed script:
+
+-   **Email:** `user1@example.com`
+-   **Password:** `password1`
+
+*You can also test with `user2@example.com` / `password2`, etc.*
+
+After logging in, you can explore the dashboard, manage transactions, view analytics, and use the various features of the application.
