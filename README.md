@@ -1,7 +1,5 @@
 # Financial Application
 
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/PrajwalPohane/FinancialApplication)
-
 A full-stack financial dashboard application designed for tracking and analyzing personal or business finances. This application features a secure Node.js backend with Express and a modern, responsive React frontend built with Vite and TypeScript.
 
 ## Key Features
